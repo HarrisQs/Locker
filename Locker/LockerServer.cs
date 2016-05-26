@@ -51,6 +51,7 @@ namespace Locker
             this.Invoke((Action)(() => ButtonStop.Enabled = true));
             WriteToConsole("Server started at " + ServerURI);
         }
+
         internal void WriteToConsole(String message)
         {
             if (RichTextBoxConsole.InvokeRequired)
@@ -71,7 +72,7 @@ namespace Locker
             }
         }
 
-       public class Startup
+       public class Startup//啟動Server
        {
            public void Configuration(IAppBuilder app)
            {
@@ -81,7 +82,7 @@ namespace Locker
            }
        }
        
-        public class MyHub : Hub
+        public class MyHub : Hub//當別人連進來時所做的動作
         {
             public void Send(string name, string message)
             {
