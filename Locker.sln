@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locker", "Locker\Locker.csproj", "{DBF26397-9918-4D7A-A867-89540897C0E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerServer", "Locker\LockerServer.csproj", "{DBF26397-9918-4D7A-A867-89540897C0E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerClient", "LockerClient\LockerClient.csproj", "{73A70AC9-857F-45DC-9869-F006EC16655C}"
 EndProject

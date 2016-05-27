@@ -28,6 +28,8 @@ Provide code examples and explanations of how to get the project.
 * [啟動 SignalR 發生 System.Reflection.TargetInvocationException 例外](https://dotblogs.com.tw/joysdw12/archive/2013/11/26/aspnet-signalr-system-reflection-targetinvocationexception.aspx)
 * [OWIN](http://blog.darkthread.net/post-2013-12-01-about-owin.aspx)
 * [SignalR causing major issues on upgrade](http://stackoverflow.com/questions/19814213/signalr-causing-major-issues-on-upgrade)
+* [Microsoft ASP.NET SignalR .NET Client 2.2.0](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)
+* [System.Net.Http](https://www.nuget.org/packages/System.Net.Http/4.0.1-rc2-24027)
 
 ## Tests
 
