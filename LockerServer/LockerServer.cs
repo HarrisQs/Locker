@@ -39,7 +39,6 @@ namespace LockerServer
         {
             if (SignalR != null)
             {
-                WriteToConsole("Server Stopped...");
                 Thread.Sleep(1500);
                 SignalR.Dispose();
                 this.Close();
@@ -89,13 +88,6 @@ namespace LockerServer
             RichTextBoxConsole.AppendText(message + Environment.NewLine);
         }
 
-        private void WinFormsServer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (SignalR != null)
-            {
-                SignalR.Dispose();
-            }
-        }
     }
     /// <summary>
     /// Used by OWIN's startup process. 

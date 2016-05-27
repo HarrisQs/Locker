@@ -215,7 +215,7 @@ namespace LockerClient
             return result;
         }
 
-        private void ValidateAccount()
+        private void ValidateAccount()//確認帳號是否正確
         {
             try
             {
@@ -287,7 +287,7 @@ namespace LockerClient
             }
         }
 
-        private void DisconnectInternet()
+        private void DisconnectInternet()//處理網路沒連上時UI的動作
         {
             //要隱藏和清除的東西
             Account_textBox.Text = "";

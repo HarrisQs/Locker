@@ -89,7 +89,6 @@
             this.MaximizeBox = false;
             this.Name = "LockerServer";
             this.Text = "Locker Server";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WinFormsServer_FormClosing);
             this.ResumeLayout(false);
 
         }
