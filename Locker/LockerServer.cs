@@ -15,7 +15,7 @@ namespace Locker
     public partial class LockerServer : Form
     {
         private IDisposable SignalR { get; set; }
-        const string ServerURI = "http://127.0.0.1:8080";
+        const string ServerURI = "http://localhost:8080";
 
         internal LockerServer()
         {
