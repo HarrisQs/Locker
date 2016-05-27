@@ -152,6 +152,7 @@
             this.Term_Checkbox.Text = "Yes,I have read this Agreement and agree to the terms.";
             this.Term_Checkbox.UseVisualStyleBackColor = false;
             this.Term_Checkbox.CheckedChanged += new System.EventHandler(this.Term_Checkbox_CheckedChanged);
+            this.Term_Checkbox.Click += new System.EventHandler(this.Term_Checkbox_Click);
             // 
             // TemporaryPassword_textBox
             // 

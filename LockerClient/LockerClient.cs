@@ -337,7 +337,8 @@ namespace LockerClient
 
         private void EnterTempPassword_button_Click(object sender, EventArgs e)//輸入臨時密碼
         {
-            if (ValidateTemporaryPassword(ClearString(TemporaryPassword_textBox.Text)))
+            if (ValidateTemporaryPassword(ClearString(TemporaryPassword_textBox.Text))
+                && TemporaryPassword_textBox.Text != "")
                 this.Close();
             else
             {
@@ -349,8 +350,14 @@ namespace LockerClient
 
         private void TemporaryPassword_textBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter && TemporaryPassword_textBox.Text != "")
                 EnterTempPassword_button_Click(sender, e);
+        }
+
+        private void Term_Checkbox_Click(object sender, EventArgs e)
+        {
+            TermBox term = new TermBox();
+            term.Show(); 
         }
     }
 }
