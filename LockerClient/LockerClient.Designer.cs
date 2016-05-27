@@ -132,6 +132,7 @@
             this.EnterTempPassword_button.Text = "Enter";
             this.EnterTempPassword_button.UseVisualStyleBackColor = true;
             this.EnterTempPassword_button.Visible = false;
+            this.EnterTempPassword_button.Click += new System.EventHandler(this.EnterTempPassword_button_Click);
             // 
             // Term_Checkbox
             // 
@@ -160,6 +161,7 @@
             this.TemporaryPassword_textBox.Size = new System.Drawing.Size(100, 33);
             this.TemporaryPassword_textBox.TabIndex = 18;
             this.TemporaryPassword_textBox.Visible = false;
+            this.TemporaryPassword_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TemporaryPassword_textBox_KeyDown);
             // 
             // WarningMessage_label
             // 

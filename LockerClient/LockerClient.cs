@@ -19,6 +19,7 @@ using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Security.Cryptography;
 
 namespace LockerClient
 {
@@ -63,7 +64,6 @@ namespace LockerClient
             WarningMessage_label.Visible = false;
             Login_button.ForeColor = System.Drawing.Color.Silver;
             Detail_label.Text = "";
-
         }
 
         private void LockerClient_Load(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace LockerClient
 
         }
 
-        private void Login_button_Click(object sender, EventArgs e)
+        private void Login_button_Click(object sender, EventArgs e)//送出帳號密碼時
         {
             WarningMessage_label.Visible = true;
             string s = Password_textBox.Text;
@@ -190,7 +190,7 @@ namespace LockerClient
 
         }
 
-        private void Term_Checkbox_CheckedChanged(object sender, EventArgs e)
+        private void Term_Checkbox_CheckedChanged(object sender, EventArgs e)//更改CheckBox時給予警告
         { 
             if (!Term_Checkbox.Checked)//如果沒有同意條約的話
             { 
@@ -309,6 +309,48 @@ namespace LockerClient
             this.BackColor = System.Drawing.Color.Orange;
             //重新連線
             //timer1.Enabled = true;
+        }
+
+        private bool ValidateTemporaryPassword(String UserEnter)//驗證臨時密碼
+        {
+            string source = Convert.ToString(DateTime.Today);
+            using (MD5 md5Hash = MD5.Create())
+            {
+                //創造臨時密碼
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(source));
+                StringBuilder sBuilder = new StringBuilder();
+                for (int i = 10; i < 14; i += 2)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+                //驗證臨時密碼
+                if (sBuilder.ToString() == UserEnter)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private void EnterTempPassword_button_Click(object sender, EventArgs e)//輸入臨時密碼
+        {
+            if (ValidateTemporaryPassword(ClearString(TemporaryPassword_textBox.Text)))
+                this.Close();
+            else
+            {
+                WarningMessage_label.Visible = true;
+                WarningMessage_label.Text = "Wrong Temporary Password.";
+            }               
+            TemporaryPassword_textBox.ResetText();
+        }
+
+        private void TemporaryPassword_textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+                EnterTempPassword_button_Click(sender, e);
         }
     }
 }
