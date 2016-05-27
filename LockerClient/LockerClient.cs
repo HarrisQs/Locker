@@ -105,6 +105,7 @@ namespace LockerClient
              * */
 
         }
+
         private async void ConnectAsync()//與Server連線
         {
             Connection = new HubConnection(ServerURI);
@@ -242,7 +243,7 @@ namespace LockerClient
                 dataStream.Close();
                 response.Close();
                 //判斷是否驗證成功
-                if (json["authentic"].ToString() == "1")
+                if (json["authentic"].ToString() == "1") { }
                     //Check = true;
 
              //   AdditionalCheckFunction(Check);

@@ -9,13 +9,6 @@ using System.Windows.Forms;
 
 namespace LockerServer
 {
-    /// <summary>
-    /// WinForms host for a SignalR server. The host can stop and start the SignalR
-    /// server, report errors when trying to start the server on a URI where a
-    /// server is already being hosted, and monitor when clients connect and disconnect. 
-    /// The hub used in this server is a simple echo service, and has the same 
-    /// functionality as the other hubs in the SignalR Getting Started tutorials.
-    /// </summary>
     public partial class LockerServer : Form
     {
         private IDisposable SignalR { get; set; }
@@ -43,8 +36,20 @@ namespace LockerServer
         /// </summary>
         private void ButtonStop_Click(object sender, EventArgs e)
         {
-            //SignalR will be disposed in the FormClosing event
-            Close();
+            if (SignalR != null)
+            {
+                RichTextBoxConsole.Text = "";
+                ButtonStop.Enabled = false;
+                ButtonClear.Enabled = false;
+                ButtonStart.Enabled = true;
+                WriteToConsole("Stoping server...");
+                SignalR.Dispose();
+            }
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            RichTextBoxConsole.Text = "";
         }
 
         /// <summary>
@@ -65,6 +70,7 @@ namespace LockerServer
                 return;
             }
             this.Invoke((Action)(() => ButtonStop.Enabled = true));
+            this.Invoke((Action)(() => ButtonClear.Enabled = true));
             WriteToConsole("Server started at " + ServerURI);
         }
         /// <summary>
@@ -86,7 +92,6 @@ namespace LockerServer
 
         private void WinFormsServer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
             if (SignalR != null)
             {
                 SignalR.Dispose();
