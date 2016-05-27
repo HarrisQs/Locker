@@ -87,22 +87,26 @@ namespace LockerClient
             WarningMessage_label.Location = new Point(_ScreenCenterX - 90, _ScreenCenterY + 95);
             // show services term
             Term_Checkbox.Location = new Point(_ScreenCenterX - 150, _ScreenCenterY + 200);
-            getComputerInfo();//取得電腦資訊
-            ConnectServer();//開始連線
+            ConnectServerandGetInfo();//取得電腦資訊
+            //ConnectServer();//開始連線
 
         }
 
-        private async void getComputerInfo()//這裡使用同步 所以裡面的東西要先有才會繼續
+        private async void ConnectServerandGetInfo()//這裡使用同步 所以裡面的東西要先有才會繼續
         {
             string ResponseText;
             HttpClient client = new HttpClient();
+            Connection = new HubConnection(ServerURI);
+            HubProxy = Connection.CreateHubProxy("MyHub");
             try
             {
                 HttpResponseMessage response = await client.GetAsync("http://vls.yzu.edu.tw/cmd-utf8.asp");
                 response.EnsureSuccessStatusCode();
                 ResponseText = await response.Content.ReadAsStringAsync();
                 dynamic ResponseJOSN = JObject.Parse(ResponseText);
+                await Connection.Start();//開始連線
 
+                //電腦資訊
                 _HostName = Dns.GetHostName();
                 _IP = ResponseJOSN["yIP"];
                 _Group = ResponseJOSN["yGroup"];
@@ -120,28 +124,6 @@ namespace LockerClient
                 DisconnectUI();
             }
          }
-
-        private async void ConnectServer()//與Server連線
-        {
-            Connection = new HubConnection(ServerURI);
-            HubProxy = Connection.CreateHubProxy("MyHub");
-            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
-            /*HubProxy.On<string, string>("AddMessage", (name, message) =>
-                this.Invoke((Action)(() =>
-                    RichTextBoxConsole.AppendText(String.Format("{0}: {1}" + Environment.NewLine, name, message))
-                ))
-            );*/
-            try
-            {
-                await Connection.Start();
-                ConnectUI();
-            }
-            catch (Exception)
-            {
-                DisconnectUI();
-            }
-
-        }
 
         private void Login_button_Click(object sender, EventArgs e)//送出帳號密碼時
         {
@@ -410,7 +392,7 @@ namespace LockerClient
 
         private void ReconnectCountdown_Tick(object sender, EventArgs e)
         {
-            getComputerInfo();
+            ConnectServerandGetInfo();
             //ConnectAsync();
         }
 
