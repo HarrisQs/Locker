@@ -109,6 +109,7 @@ namespace LockerClient
             try
             {
                 await Connection.Start();
+                Login_button.Enabled = true;
             }
             catch (HttpRequestException)
             {

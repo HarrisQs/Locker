@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SignalRChat
+namespace LockerServer
 {
     public static class Program
     {
-        internal static WinFormsServer MainForm { get; set; }
+        internal static LockerServer MainForm { get; set; }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,7 +15,7 @@ namespace SignalRChat
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm = new WinFormsServer();
+            MainForm = new LockerServer();
             Application.Run(MainForm);
         }
     }
