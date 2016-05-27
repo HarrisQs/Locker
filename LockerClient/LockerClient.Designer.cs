@@ -28,135 +28,161 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SignInPanel = new System.Windows.Forms.Panel();
-            this.ChatPanel = new System.Windows.Forms.Panel();
-            this.RichTextBoxConsole = new System.Windows.Forms.RichTextBox();
-            this.TextBoxMessage = new System.Windows.Forms.TextBox();
-            this.ButtonSend = new System.Windows.Forms.Button();
-            this.StatusText = new System.Windows.Forms.Label();
-            this.SignInButton = new System.Windows.Forms.Button();
-            this.UserNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SignInPanel.SuspendLayout();
-            this.ChatPanel.SuspendLayout();
+            this.Login_pictureBox = new System.Windows.Forms.PictureBox();
+            this.ConnectFailed_pictureBox = new System.Windows.Forms.PictureBox();
+            this.Loading_pictureBox = new System.Windows.Forms.PictureBox();
+            this.Password_label = new System.Windows.Forms.Label();
+            this.Account_label = new System.Windows.Forms.Label();
+            this.Account_textBox = new System.Windows.Forms.TextBox();
+            this.Password_textBox = new System.Windows.Forms.TextBox();
+            this.Enter_button = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Loading_pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // SignInPanel
+            // Login_pictureBox
             // 
-            this.SignInPanel.Controls.Add(this.ChatPanel);
-            this.SignInPanel.Controls.Add(this.StatusText);
-            this.SignInPanel.Controls.Add(this.SignInButton);
-            this.SignInPanel.Controls.Add(this.UserNameTextBox);
-            this.SignInPanel.Controls.Add(this.label1);
-            this.SignInPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SignInPanel.Location = new System.Drawing.Point(0, 0);
-            this.SignInPanel.Name = "SignInPanel";
-            this.SignInPanel.Size = new System.Drawing.Size(501, 474);
-            this.SignInPanel.TabIndex = 5;
+            this.Login_pictureBox.Image = global::LockerClient.Properties.Resources.login;
+            this.Login_pictureBox.Location = new System.Drawing.Point(12, 21);
+            this.Login_pictureBox.Name = "Login_pictureBox";
+            this.Login_pictureBox.Size = new System.Drawing.Size(100, 50);
+            this.Login_pictureBox.TabIndex = 1;
+            this.Login_pictureBox.TabStop = false;
             // 
-            // ChatPanel
+            // ConnectFailed_pictureBox
             // 
-            this.ChatPanel.Controls.Add(this.RichTextBoxConsole);
-            this.ChatPanel.Controls.Add(this.TextBoxMessage);
-            this.ChatPanel.Controls.Add(this.ButtonSend);
-            this.ChatPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChatPanel.Location = new System.Drawing.Point(0, 0);
-            this.ChatPanel.Name = "ChatPanel";
-            this.ChatPanel.Size = new System.Drawing.Size(501, 474);
-            this.ChatPanel.TabIndex = 4;
-            this.ChatPanel.Visible = false;
+            this.ConnectFailed_pictureBox.Image = global::LockerClient.Properties.Resources.login_failed;
+            this.ConnectFailed_pictureBox.Location = new System.Drawing.Point(12, 90);
+            this.ConnectFailed_pictureBox.Name = "ConnectFailed_pictureBox";
+            this.ConnectFailed_pictureBox.Size = new System.Drawing.Size(100, 74);
+            this.ConnectFailed_pictureBox.TabIndex = 10;
+            this.ConnectFailed_pictureBox.TabStop = false;
+            this.ConnectFailed_pictureBox.Visible = false;
             // 
-            // RichTextBoxConsole
+            // Loading_pictureBox
             // 
-            this.RichTextBoxConsole.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.RichTextBoxConsole.Location = new System.Drawing.Point(8, 35);
-            this.RichTextBoxConsole.Name = "RichTextBoxConsole";
-            this.RichTextBoxConsole.ReadOnly = true;
-            this.RichTextBoxConsole.Size = new System.Drawing.Size(481, 426);
-            this.RichTextBoxConsole.TabIndex = 3;
-            this.RichTextBoxConsole.Text = "";
+            this.Loading_pictureBox.BackColor = System.Drawing.Color.White;
+            this.Loading_pictureBox.Image = global::LockerClient.Properties.Resources.loading;
+            this.Loading_pictureBox.Location = new System.Drawing.Point(12, 182);
+            this.Loading_pictureBox.Name = "Loading_pictureBox";
+            this.Loading_pictureBox.Size = new System.Drawing.Size(128, 15);
+            this.Loading_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Loading_pictureBox.TabIndex = 11;
+            this.Loading_pictureBox.TabStop = false;
             // 
-            // TextBoxMessage
+            // Password_label
             // 
-            this.TextBoxMessage.Location = new System.Drawing.Point(8, 11);
-            this.TextBoxMessage.Name = "TextBoxMessage";
-            this.TextBoxMessage.Size = new System.Drawing.Size(400, 22);
-            this.TextBoxMessage.TabIndex = 2;
+            this.Password_label.AutoSize = true;
+            this.Password_label.BackColor = System.Drawing.Color.White;
+            this.Password_label.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Password_label.ForeColor = System.Drawing.Color.Black;
+            this.Password_label.Location = new System.Drawing.Point(25, 274);
+            this.Password_label.Name = "Password_label";
+            this.Password_label.Size = new System.Drawing.Size(98, 48);
+            this.Password_label.TabIndex = 12;
+            this.Password_label.Text = "密碼\r\nPassword";
             // 
-            // ButtonSend
+            // Account_label
             // 
-            this.ButtonSend.Enabled = false;
-            this.ButtonSend.Location = new System.Drawing.Point(414, 9);
-            this.ButtonSend.Name = "ButtonSend";
-            this.ButtonSend.Size = new System.Drawing.Size(75, 21);
-            this.ButtonSend.TabIndex = 1;
-            this.ButtonSend.Text = "Send";
-            this.ButtonSend.UseVisualStyleBackColor = true;
-            this.ButtonSend.Click += new System.EventHandler(this.ButtonSend_Click);
+            this.Account_label.AutoSize = true;
+            this.Account_label.BackColor = System.Drawing.Color.White;
+            this.Account_label.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Account_label.ForeColor = System.Drawing.Color.Black;
+            this.Account_label.Location = new System.Drawing.Point(25, 210);
+            this.Account_label.Name = "Account_label";
+            this.Account_label.Size = new System.Drawing.Size(87, 48);
+            this.Account_label.TabIndex = 13;
+            this.Account_label.Text = "帳號\r\nAccount";
             // 
-            // StatusText
+            // Account_textBox
             // 
-            this.StatusText.Location = new System.Drawing.Point(12, 54);
-            this.StatusText.Name = "StatusText";
-            this.StatusText.Size = new System.Drawing.Size(477, 12);
-            this.StatusText.TabIndex = 6;
-            this.StatusText.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.StatusText.Visible = false;
+            this.Account_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Account_textBox.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Account_textBox.Location = new System.Drawing.Point(138, 225);
+            this.Account_textBox.Name = "Account_textBox";
+            this.Account_textBox.Size = new System.Drawing.Size(100, 33);
+            this.Account_textBox.TabIndex = 14;
             // 
-            // SignInButton
+            // Password_textBox
             // 
-            this.SignInButton.Location = new System.Drawing.Point(414, 20);
-            this.SignInButton.Name = "SignInButton";
-            this.SignInButton.Size = new System.Drawing.Size(75, 21);
-            this.SignInButton.TabIndex = 5;
-            this.SignInButton.Text = "Sign In";
-            this.SignInButton.UseVisualStyleBackColor = true;
-            this.SignInButton.Click += new System.EventHandler(this.SignInButton_Click);
+            this.Password_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Password_textBox.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Password_textBox.Location = new System.Drawing.Point(138, 289);
+            this.Password_textBox.Name = "Password_textBox";
+            this.Password_textBox.PasswordChar = '*';
+            this.Password_textBox.Size = new System.Drawing.Size(100, 33);
+            this.Password_textBox.TabIndex = 15;
             // 
-            // UserNameTextBox
+            // Enter_button
             // 
-            this.UserNameTextBox.Location = new System.Drawing.Point(7, 22);
-            this.UserNameTextBox.Name = "UserNameTextBox";
-            this.UserNameTextBox.Size = new System.Drawing.Size(401, 22);
-            this.UserNameTextBox.TabIndex = 4;
+            this.Enter_button.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Enter_button.ForeColor = System.Drawing.Color.Black;
+            this.Enter_button.Location = new System.Drawing.Point(52, 328);
+            this.Enter_button.Name = "Enter_button";
+            this.Enter_button.Size = new System.Drawing.Size(172, 57);
+            this.Enter_button.TabIndex = 16;
+            this.Enter_button.Text = "Enter";
+            this.Enter_button.UseVisualStyleBackColor = true;
+            this.Enter_button.Visible = false;
             // 
-            // label1
+            // checkBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Enter user name:";
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox1.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.checkBox1.Location = new System.Drawing.Point(12, 422);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(353, 20);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Yes,I have read this Agreement and agree to the terms.";
+            this.checkBox1.UseVisualStyleBackColor = false;
             // 
             // LockerClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 474);
-            this.Controls.Add(this.SignInPanel);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.Enter_button);
+            this.Controls.Add(this.Password_textBox);
+            this.Controls.Add(this.Account_textBox);
+            this.Controls.Add(this.Account_label);
+            this.Controls.Add(this.Password_label);
+            this.Controls.Add(this.Loading_pictureBox);
+            this.Controls.Add(this.ConnectFailed_pictureBox);
+            this.Controls.Add(this.Login_pictureBox);
             this.Name = "LockerClient";
             this.Text = "Locker Clinet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WinFormsClient_FormClosing);
-            this.SignInPanel.ResumeLayout(false);
-            this.SignInPanel.PerformLayout();
-            this.ChatPanel.ResumeLayout(false);
-            this.ChatPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Loading_pictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel SignInPanel;
-        private System.Windows.Forms.Panel ChatPanel;
-        private System.Windows.Forms.RichTextBox RichTextBoxConsole;
-        private System.Windows.Forms.TextBox TextBoxMessage;
-        private System.Windows.Forms.Button ButtonSend;
-        private System.Windows.Forms.Label StatusText;
-        private System.Windows.Forms.Button SignInButton;
-        private System.Windows.Forms.TextBox UserNameTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox Login_pictureBox;
+        private System.Windows.Forms.PictureBox ConnectFailed_pictureBox;
+        private System.Windows.Forms.PictureBox Loading_pictureBox;
+        private System.Windows.Forms.Label Password_label;
+        private System.Windows.Forms.Label Account_label;
+        private System.Windows.Forms.TextBox Account_textBox;
+        private System.Windows.Forms.TextBox Password_textBox;
+        private System.Windows.Forms.Button Enter_button;
+        private System.Windows.Forms.CheckBox checkBox1;
+
+
 
 
     }
