@@ -100,12 +100,12 @@ namespace LockerClient
             HubProxy = Connection.CreateHubProxy("MyHub");
             try
             {
+                await Connection.Start();//開始與Server連線
                 HttpResponseMessage response = await client.GetAsync("http://vls.yzu.edu.tw/cmd-utf8.asp");
                 response.EnsureSuccessStatusCode();
                 ResponseText = await response.Content.ReadAsStringAsync();
                 dynamic ResponseJOSN = JObject.Parse(ResponseText);
-                await Connection.Start();//開始連線
-
+                
                 //電腦資訊
                 _HostName = Dns.GetHostName();
                 _IP = ResponseJOSN["yIP"];
@@ -304,12 +304,15 @@ namespace LockerClient
             ConnectFailed_pictureBox.Location = new Point(_LoginX, _LoginY);
             this.BackColor = System.Drawing.Color.Orange;
             //每五秒重新連線
-            ReconnectCountdown.Enabled = true;
+            Reconnect.Enabled = true;
+            VerificationConnect.Enabled = false;
         }
 
         private void ConnectUI()//處理網路沒連上時UI的動作
         {
-            ReconnectCountdown.Enabled = false;//連上線後不用在繼續重新連了
+            Reconnect.Enabled = false;//連上線後不用在繼續重新連了
+            VerificationConnect.Enabled = true;//判斷有無斷線
+            Detail_label.Text = "";
             ConnectFailed_pictureBox.Visible = false;
             TemporaryPassword_textBox.Visible = false;
             EnterTempPassword_button.Visible = false;
@@ -393,7 +396,6 @@ namespace LockerClient
         private void ReconnectCountdown_Tick(object sender, EventArgs e)
         {
             ConnectServerandGetInfo();
-            //ConnectAsync();
         }
 
         private void LockerClient_FormClosing(object sender, FormClosingEventArgs e)
@@ -401,6 +403,11 @@ namespace LockerClient
             //視窗關閉後，斷線
             Connection.Stop();
             Connection.Dispose();
+        }
+
+        private void VerificationConnect_Tick(object sender, EventArgs e)
+        {
+            ConnectServerandGetInfo();
         }
     }
 }

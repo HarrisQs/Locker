@@ -39,7 +39,7 @@ namespace LockerServer
         {
             if (SignalR != null)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
                 SignalR.Dispose();
                 this.Close();
             }
