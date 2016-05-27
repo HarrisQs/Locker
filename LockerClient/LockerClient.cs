@@ -122,10 +122,9 @@ namespace LockerClient
                 Login_button.ForeColor = System.Drawing.Color.Black;
                 Loading_pictureBox.Visible = false;
             }
-            catch (HttpRequestException)
+            catch (Exception)
             {
-                //Fail connection
-                return;
+                DisconnectInternet();
             }
 
         }
@@ -261,9 +260,8 @@ namespace LockerClient
                     Account_textBox.Focus();
                 }
             }
-            catch (WebException)
-            {
-                // if is Network is ok but Auth isdown 
+            catch (WebException)//無法認證帳號
+            { 
                 DisconnectInternet();
             }
 
@@ -291,6 +289,7 @@ namespace LockerClient
 
         private void DisconnectInternet()
         {
+            //要隱藏和清除的東西
             Account_textBox.Text = "";
             Account_textBox.Visible = false;
             Account_label.Visible = false;
@@ -299,14 +298,17 @@ namespace LockerClient
             Password_label.Visible = false;
             WarningMessage_label.Visible = false;
             Login_button.Visible = false;
+            Loading_pictureBox.Visible = false;
+            //要出現的
             TemporaryPassword_textBox.Visible = true;
             TemporaryPassword_textBox.Location = new Point(_ScreenCenterX - 25, _ScreenCenterY + 44);
             EnterTempPassword_button.Visible = true;
             EnterTempPassword_button.Location = new Point(_ScreenCenterX - 78, _ScreenCenterY + 130);
             ConnectFailed_pictureBox.Visible = true;
             ConnectFailed_pictureBox.Location = new Point(_LoginX, _LoginY);
-            //timer1.Enabled = true;
             this.BackColor = System.Drawing.Color.Orange;
+            //重新連線
+            //timer1.Enabled = true;
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Owin.Hosting;
 using Owin;
 using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,12 +39,10 @@ namespace LockerServer
         {
             if (SignalR != null)
             {
-                RichTextBoxConsole.Text = "";
-                ButtonStop.Enabled = false;
-                ButtonClear.Enabled = false;
-                ButtonStart.Enabled = true;
-                WriteToConsole("Stoping server...");
+                WriteToConsole("Server Stopped...");
+                Thread.Sleep(1500);
                 SignalR.Dispose();
+                this.Close();
             }
         }
 
