@@ -38,7 +38,7 @@
             this.EnterTempPassword_button = new System.Windows.Forms.Button();
             this.Term_Checkbox = new System.Windows.Forms.CheckBox();
             this.TemporaryPassword_textBox = new System.Windows.Forms.TextBox();
-            this.LoginFailed_label = new System.Windows.Forms.Label();
+            this.WarningMessage_label = new System.Windows.Forms.Label();
             this.Login_button = new System.Windows.Forms.Button();
             this.Detail_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).BeginInit();
@@ -148,6 +148,7 @@
             this.Term_Checkbox.TabIndex = 17;
             this.Term_Checkbox.Text = "Yes,I have read this Agreement and agree to the terms.";
             this.Term_Checkbox.UseVisualStyleBackColor = false;
+            this.Term_Checkbox.CheckedChanged += new System.EventHandler(this.Term_Checkbox_CheckedChanged);
             // 
             // TemporaryPassword_textBox
             // 
@@ -158,17 +159,16 @@
             this.TemporaryPassword_textBox.TabIndex = 18;
             this.TemporaryPassword_textBox.Visible = false;
             // 
-            // LoginFailed_label
+            // WarningMessage_label
             // 
-            this.LoginFailed_label.AutoSize = true;
-            this.LoginFailed_label.BackColor = System.Drawing.Color.White;
-            this.LoginFailed_label.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.LoginFailed_label.ForeColor = System.Drawing.Color.DarkRed;
-            this.LoginFailed_label.Location = new System.Drawing.Point(250, 225);
-            this.LoginFailed_label.Name = "LoginFailed_label";
-            this.LoginFailed_label.Size = new System.Drawing.Size(86, 24);
-            this.LoginFailed_label.TabIndex = 19;
-            this.LoginFailed_label.Text = "登入失敗";
+            this.WarningMessage_label.AutoSize = true;
+            this.WarningMessage_label.BackColor = System.Drawing.Color.White;
+            this.WarningMessage_label.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.WarningMessage_label.ForeColor = System.Drawing.Color.DarkRed;
+            this.WarningMessage_label.Location = new System.Drawing.Point(250, 225);
+            this.WarningMessage_label.Name = "WarningMessage_label";
+            this.WarningMessage_label.Size = new System.Drawing.Size(0, 24);
+            this.WarningMessage_label.TabIndex = 19;
             // 
             // Login_button
             // 
@@ -178,8 +178,9 @@
             this.Login_button.Name = "Login_button";
             this.Login_button.Size = new System.Drawing.Size(172, 57);
             this.Login_button.TabIndex = 20;
-            this.Login_button.Text = "Login";
+            this.Login_button.Text = "登入   Login";
             this.Login_button.UseVisualStyleBackColor = true;
+            this.Login_button.Click += new System.EventHandler(this.Login_button_Click);
             // 
             // Detail_label
             // 
@@ -201,7 +202,7 @@
             this.ClientSize = new System.Drawing.Size(501, 474);
             this.Controls.Add(this.Detail_label);
             this.Controls.Add(this.Login_button);
-            this.Controls.Add(this.LoginFailed_label);
+            this.Controls.Add(this.WarningMessage_label);
             this.Controls.Add(this.TemporaryPassword_textBox);
             this.Controls.Add(this.Term_Checkbox);
             this.Controls.Add(this.EnterTempPassword_button);
@@ -235,7 +236,7 @@
         private System.Windows.Forms.Button EnterTempPassword_button;
         private System.Windows.Forms.CheckBox Term_Checkbox;
         private System.Windows.Forms.TextBox TemporaryPassword_textBox;
-        private System.Windows.Forms.Label LoginFailed_label;
+        private System.Windows.Forms.Label WarningMessage_label;
         private System.Windows.Forms.Button Login_button;
         private System.Windows.Forms.Label Detail_label;
 
