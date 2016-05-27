@@ -220,7 +220,7 @@ namespace LockerClient
             try
             {
                 //去下列網站認證帳號密碼
-                WebRequest request = WebRequest.Create("https://vlds.yzu.edu.tw/auth-utf8.asp ");
+                WebRequest request = WebRequest.Create("https://vls.yzu.edu.tw/auth-utf8.asp ");
                 request.Method = "POST";
                 string postData = "acc=" + Account_textBox.Text + 
                     "&pwd=" + Password_textBox.Text + 
