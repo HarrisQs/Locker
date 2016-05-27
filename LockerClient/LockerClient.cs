@@ -87,24 +87,49 @@ namespace LockerClient
             WarningMessage_label.Location = new Point(_ScreenCenterX - 90, _ScreenCenterY + 95);
             // show services term
             Term_Checkbox.Location = new Point(_ScreenCenterX - 150, _ScreenCenterY + 200);
-
+            getComputerInfo();//取得電腦資訊
             ConnectAsync();//開始連線
-            /**  找IP
-            IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
-
-            //show IP 
-
-            foreach (IPAddress addr in localIPs)
-            {
-
-                if (addr.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    Detail_label.Text = Detail_label.Text + addr.ToString();
-                }
-            }
-             * */
 
         }
+
+        private async void getComputerInfo()//這裡使用同步 所以裡面的東西要先有才會繼續
+        {
+            string ResponseText;
+            HttpClient client = new HttpClient();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync("http://vls.yzu.edu.tw/cmd-utf8.asp");
+                response.EnsureSuccessStatusCode();
+                ResponseText = await response.Content.ReadAsStringAsync();
+                dynamic ResponseJOSN = JObject.Parse(ResponseText);
+
+                _HostName = Dns.GetHostName();
+                _IP = ResponseJOSN["yIP"];
+                _Group = ResponseJOSN["yGroup"];
+                _Memo = ResponseJOSN["yMemo"];
+                Detail_label.Text = _HostName + "\n\r"
+                                    + _IP + "\n\r"
+                                    + _Group + "\n\r"
+                                    + _Memo ;
+                if (CheckForInternetConnection())
+                    Detail_label.Text += "Connecting";
+                Detail_label.Text += "\n\r" + Connection.State;
+                //確保重新連線和第一次連線時可以顯示正常
+                //timer1.Enabled = false;
+                //timer2.Enabled = false;
+                ConnectFailed_pictureBox.Visible = false;
+                TemporaryPassword_textBox.Visible = false;
+                EnterTempPassword_button.Visible = false;
+                Login_button.ForeColor = System.Drawing.Color.Black;
+                Account_textBox.Enabled = true;
+                Password_textBox.Enabled = true;
+                Loading_pictureBox.Visible = false;
+            }
+            catch (Exception)//處理網路沒連上或是程式的利外狀況
+            {
+                DisconnectInternet();
+            }
+         }
 
         private async void ConnectAsync()//與Server連線
         {
@@ -307,8 +332,8 @@ namespace LockerClient
             ConnectFailed_pictureBox.Visible = true;
             ConnectFailed_pictureBox.Location = new Point(_LoginX, _LoginY);
             this.BackColor = System.Drawing.Color.Orange;
-            //重新連線
-            //timer1.Enabled = true;
+            //每五秒重新連線
+            ReconnectCountdown.Enabled = true;
         }
 
         private bool ValidateTemporaryPassword(String UserEnter)//驗證臨時密碼
@@ -358,6 +383,34 @@ namespace LockerClient
         {
             TermBox term = new TermBox();
             term.Show(); 
+        }
+
+        public static bool CheckForInternetConnection()//確認是否有連線
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void ReconnectCountdown_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LockerClient_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //視窗關閉後，斷線
+            Connection.Stop();
+            Connection.Dispose();
         }
     }
 }

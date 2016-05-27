@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Login_pictureBox = new System.Windows.Forms.PictureBox();
             this.ConnectFailed_pictureBox = new System.Windows.Forms.PictureBox();
             this.Loading_pictureBox = new System.Windows.Forms.PictureBox();
@@ -41,6 +42,7 @@
             this.WarningMessage_label = new System.Windows.Forms.Label();
             this.Login_button = new System.Windows.Forms.Button();
             this.Detail_label = new System.Windows.Forms.Label();
+            this.ReconnectCountdown = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Loading_pictureBox)).BeginInit();
@@ -200,6 +202,11 @@
             this.Detail_label.TabIndex = 21;
             this.Detail_label.Text = "label1";
             // 
+            // ReconnectCountdown
+            // 
+            this.ReconnectCountdown.Interval = 5000;
+            this.ReconnectCountdown.Tick += new System.EventHandler(this.ReconnectCountdown_Tick);
+            // 
             // LockerClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -220,6 +227,7 @@
             this.Controls.Add(this.Login_pictureBox);
             this.Name = "LockerClient";
             this.Text = "Locker Clinet";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LockerClient_FormClosing);
             this.Load += new System.EventHandler(this.LockerClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).EndInit();
@@ -244,6 +252,7 @@
         private System.Windows.Forms.Label WarningMessage_label;
         private System.Windows.Forms.Button Login_button;
         private System.Windows.Forms.Label Detail_label;
+        private System.Windows.Forms.Timer ReconnectCountdown;
 
 
 
