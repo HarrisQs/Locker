@@ -40,6 +40,7 @@
             this.TemporaryPassword_textBox = new System.Windows.Forms.TextBox();
             this.LoginFailed_label = new System.Windows.Forms.Label();
             this.Login_button = new System.Windows.Forms.Button();
+            this.Detail_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Loading_pictureBox)).BeginInit();
@@ -180,11 +181,25 @@
             this.Login_button.Text = "Login";
             this.Login_button.UseVisualStyleBackColor = true;
             // 
+            // Detail_label
+            // 
+            this.Detail_label.AutoSize = true;
+            this.Detail_label.Cursor = System.Windows.Forms.Cursors.No;
+            this.Detail_label.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Detail_label.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Detail_label.ForeColor = System.Drawing.Color.Silver;
+            this.Detail_label.Location = new System.Drawing.Point(437, 0);
+            this.Detail_label.Name = "Detail_label";
+            this.Detail_label.Size = new System.Drawing.Size(64, 24);
+            this.Detail_label.TabIndex = 21;
+            this.Detail_label.Text = "label1";
+            // 
             // LockerClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 474);
+            this.Controls.Add(this.Detail_label);
             this.Controls.Add(this.Login_button);
             this.Controls.Add(this.LoginFailed_label);
             this.Controls.Add(this.TemporaryPassword_textBox);
@@ -222,6 +237,7 @@
         private System.Windows.Forms.TextBox TemporaryPassword_textBox;
         private System.Windows.Forms.Label LoginFailed_label;
         private System.Windows.Forms.Button Login_button;
+        private System.Windows.Forms.Label Detail_label;
 
 
 

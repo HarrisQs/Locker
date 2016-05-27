@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.AspNet.SignalR.Client;
 using System.Net.Http;
+using System.Net;
+using System.Net.Sockets;
 
 namespace LockerClient
 {
@@ -51,6 +53,7 @@ namespace LockerClient
             TemporaryPassword_textBox.Width = 150;
             LoginFailed_label.Visible = false;
             Login_button.ForeColor = System.Drawing.Color.Silver;
+            Detail_label.Text = "";
 
         }
 
@@ -75,6 +78,44 @@ namespace LockerClient
             LoginFailed_label.Location = new Point(ScreenCenter_X - 90, ScreenCenter_Y + 95);
             // show services term
             Term_Checkbox.Location = new Point(ScreenCenter_X - 150, ScreenCenter_Y + 200);
+
+            ConnectAsync();//開始連線
+            /**  找IP
+            IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+
+            //show IP 
+
+            foreach (IPAddress addr in localIPs)
+            {
+
+                if (addr.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    Detail_label.Text = Detail_label.Text + addr.ToString();
+                }
+            }
+             * */
+
+        }
+        private async void ConnectAsync()
+        {
+            Connection = new HubConnection(ServerURI);
+            HubProxy = Connection.CreateHubProxy("MyHub");
+            //Handle incoming event from server: use Invoke to write to console from SignalR's thread
+            /*HubProxy.On<string, string>("AddMessage", (name, message) =>
+                this.Invoke((Action)(() =>
+                    RichTextBoxConsole.AppendText(String.Format("{0}: {1}" + Environment.NewLine, name, message))
+                ))
+            );*/
+            try
+            {
+                await Connection.Start();
+            }
+            catch (HttpRequestException)
+            {
+                //Fail connection
+                return;
+            }
+
         }
 
     }
