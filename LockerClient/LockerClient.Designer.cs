@@ -108,6 +108,7 @@
             this.Account_textBox.Name = "Account_textBox";
             this.Account_textBox.Size = new System.Drawing.Size(100, 33);
             this.Account_textBox.TabIndex = 14;
+            this.Account_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Account_textBox_KeyDown);
             // 
             // Password_textBox
             // 
@@ -118,6 +119,7 @@
             this.Password_textBox.PasswordChar = '*';
             this.Password_textBox.Size = new System.Drawing.Size(100, 33);
             this.Password_textBox.TabIndex = 15;
+            this.Password_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Password_textBox_KeyDown);
             // 
             // EnterTempPassword_button
             // 

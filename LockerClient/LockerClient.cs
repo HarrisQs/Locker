@@ -186,7 +186,7 @@ namespace LockerClient
             {
                 Account_textBox.Text = ClearString(Account_textBox.Text.ToString());
                 Password_textBox.Text = ClearString(Password_textBox.Text.ToString());
-                CheckFunction();
+                ValidateAccount();
             }
 
         }
@@ -216,12 +216,12 @@ namespace LockerClient
             return result;
         }
 
-        private void CheckFunction()
+        private void ValidateAccount()
         {
             try
             {
                 //去下列網站認證帳號密碼
-                WebRequest request = WebRequest.Create("https://vls.yzu.edu.tw/auth-utf8.asp ");
+                WebRequest request = WebRequest.Create("https://vlds.yzu.edu.tw/auth-utf8.asp ");
                 request.Method = "POST";
                 string postData = "acc=" + Account_textBox.Text + 
                     "&pwd=" + Password_textBox.Text + 
@@ -243,27 +243,70 @@ namespace LockerClient
                 dataStream.Close();
                 response.Close();
                 //判斷是否驗證成功
-                if (json["authentic"].ToString() == "1") { }
-                    //Check = true;
-
-             //   AdditionalCheckFunction(Check);
+                if (json["authentic"].ToString() == "1")
+                {
+                    //e.Cancel = true;
+                    //this.Hide();
+                    this.Close();
+                }
+                else 
+                {
+                    WarningMessage_label.Text = "登入失敗  Login Failed";
+                    Loading_pictureBox.Visible = false;
+                    Login_button.ForeColor = System.Drawing.Color.Black;
+                    Account_textBox.Enabled = true;
+                    Password_textBox.Enabled = true;
+                    Account_textBox.ResetText();
+                    Password_textBox.ResetText();
+                    Account_textBox.Focus();
+                }
             }
             catch (WebException)
             {
-                //// if is Network is ok but Auth isdown 
-                //Account_textBox.Text = "";
-                //Password_textBox.Text = "";
-                //LoginFailed_label.Visible = false;
-                //TemporaryPassword_textBox.Visible = true;
-                //TemporaryPassword_textBox.Location = new Point(_ScreenCenterX - 25, _ScreenCenterY + 44);
-                //Enter_button.Visible = true;
-                //Enter_button.Location = new Point(_ScreenCenterX - 78, _ScreenCenterY + 130);
-                //ConnectFailed_pictureBox.Visible = true;
-                //ConnectFailed_pictureBox.Location = new Point(_LoginX, _LoginY);
-                //timer1.Enabled = true;
-                //return;
+                // if is Network is ok but Auth isdown 
+                DisconnectInternet();
             }
 
+        }
+
+        private void Account_textBox_KeyDown(object sender, KeyEventArgs e)//避免使用者一直按"Enter"
+        {   
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                Password_textBox.Focus();
+            }
+        }
+
+        private void Password_textBox_KeyDown(object sender, KeyEventArgs e)//避免使用者一直按"Enter"
+        {
+            if (Login_button.Visible == true)
+            {
+                if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+                {
+                    Login_button.Focus();
+                    Login_button_Click(sender, e);
+                }
+            }
+        }
+
+        private void DisconnectInternet()
+        {
+            Account_textBox.Text = "";
+            Account_textBox.Visible = false;
+            Account_label.Visible = false;
+            Password_textBox.Text = "";
+            Password_textBox.Visible = false;
+            Password_label.Visible = false;
+            WarningMessage_label.Visible = false;
+            Login_button.Visible = false;
+            TemporaryPassword_textBox.Visible = true;
+            TemporaryPassword_textBox.Location = new Point(_ScreenCenterX - 25, _ScreenCenterY + 44);
+            EnterTempPassword_button.Visible = true;
+            EnterTempPassword_button.Location = new Point(_ScreenCenterX - 78, _ScreenCenterY + 130);
+            ConnectFailed_pictureBox.Visible = true;
+            ConnectFailed_pictureBox.Location = new Point(_LoginX, _LoginY);
+            //timer1.Enabled = true;
+            this.BackColor = System.Drawing.Color.Orange;
         }
     }
 }
