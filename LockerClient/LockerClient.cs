@@ -88,7 +88,7 @@ namespace LockerClient
             // show services term
             Term_Checkbox.Location = new Point(_ScreenCenterX - 150, _ScreenCenterY + 200);
             getComputerInfo();//取得電腦資訊
-            ConnectAsync();//開始連線
+            ConnectServer();//開始連線
 
         }
 
@@ -113,25 +113,15 @@ namespace LockerClient
                                     + _Memo ;
                 if (CheckForInternetConnection())
                     Detail_label.Text += "Connecting";
-                Detail_label.Text += "\n\r" + Connection.State;
-                //確保重新連線和第一次連線時可以顯示正常
-                //timer1.Enabled = false;
-                //timer2.Enabled = false;
-                ConnectFailed_pictureBox.Visible = false;
-                TemporaryPassword_textBox.Visible = false;
-                EnterTempPassword_button.Visible = false;
-                Login_button.ForeColor = System.Drawing.Color.Black;
-                Account_textBox.Enabled = true;
-                Password_textBox.Enabled = true;
-                Loading_pictureBox.Visible = false;
+                ConnectUI();
             }
             catch (Exception)//處理網路沒連上或是程式的利外狀況
             {
-                DisconnectInternet();
+                DisconnectUI();
             }
          }
 
-        private async void ConnectAsync()//與Server連線
+        private async void ConnectServer()//與Server連線
         {
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
@@ -144,12 +134,11 @@ namespace LockerClient
             try
             {
                 await Connection.Start();
-                Login_button.ForeColor = System.Drawing.Color.Black;
-                Loading_pictureBox.Visible = false;
+                ConnectUI();
             }
             catch (Exception)
             {
-                DisconnectInternet();
+                DisconnectUI();
             }
 
         }
@@ -287,7 +276,7 @@ namespace LockerClient
             }
             catch (WebException)//無法認證帳號
             { 
-                DisconnectInternet();
+                DisconnectUI();
             }
 
         }
@@ -312,7 +301,7 @@ namespace LockerClient
             }
         }
 
-        private void DisconnectInternet()//處理網路沒連上時UI的動作
+        private void DisconnectUI()//處理網路沒連上時UI的動作
         {
             //要隱藏和清除的東西
             Account_textBox.Text = "";
@@ -334,6 +323,24 @@ namespace LockerClient
             this.BackColor = System.Drawing.Color.Orange;
             //每五秒重新連線
             ReconnectCountdown.Enabled = true;
+        }
+
+        private void ConnectUI()//處理網路沒連上時UI的動作
+        {
+            ReconnectCountdown.Enabled = false;//連上線後不用在繼續重新連了
+            ConnectFailed_pictureBox.Visible = false;
+            TemporaryPassword_textBox.Visible = false;
+            EnterTempPassword_button.Visible = false;
+            Login_button.ForeColor = System.Drawing.Color.Black;
+            Login_button.Visible = true;
+            Account_textBox.Enabled = true;
+            Account_textBox.Visible = true;
+            Account_label.Visible = true;
+            Password_textBox.Enabled = true;
+            Password_textBox.Visible = true;
+            Password_label.Visible = true;
+            Loading_pictureBox.Visible = false;
+            this.BackColor = System.Drawing.Color.Black;
         }
 
         private bool ValidateTemporaryPassword(String UserEnter)//驗證臨時密碼
@@ -403,7 +410,8 @@ namespace LockerClient
 
         private void ReconnectCountdown_Tick(object sender, EventArgs e)
         {
-
+            getComputerInfo();
+            //ConnectAsync();
         }
 
         private void LockerClient_FormClosing(object sender, FormClosingEventArgs e)
