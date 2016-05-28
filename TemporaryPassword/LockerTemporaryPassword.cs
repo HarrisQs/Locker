@@ -1,4 +1,9 @@
-﻿using System;
+﻿/**
+ * 撰寫時間:2016/05/28
+ * 作者:張弘瑜
+ * 目標:做一個取得臨時密碼的視窗
+ **/ 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +18,6 @@ namespace TemporaryPassword
 {
     public partial class TemporaryPasswordForm : Form
     {
-        //string source = Convert.ToString(DateTime.Today);
         public TemporaryPasswordForm()
         {
             InitializeComponent();
