@@ -28,61 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Get_Button = new System.Windows.Forms.Button();
+            this.RichTextBoxConsole = new System.Windows.Forms.RichTextBox();
+            this.ChooseDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // button1
+            // Get_Button
             // 
-            this.button1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(25, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 31);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "取得臨時密碼";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Get_Button.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Get_Button.Location = new System.Drawing.Point(259, 12);
+            this.Get_Button.Name = "Get_Button";
+            this.Get_Button.Size = new System.Drawing.Size(175, 31);
+            this.Get_Button.TabIndex = 2;
+            this.Get_Button.Text = "取得臨時密碼";
+            this.Get_Button.UseVisualStyleBackColor = true;
+            this.Get_Button.Click += new System.EventHandler(this.Get_Button_Click);
             // 
-            // dateTimePicker1
+            // RichTextBoxConsole
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(20, 70);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 33);
-            this.dateTimePicker1.TabIndex = 3;
+            this.RichTextBoxConsole.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.RichTextBoxConsole.Location = new System.Drawing.Point(2, 51);
+            this.RichTextBoxConsole.Name = "RichTextBoxConsole";
+            this.RichTextBoxConsole.ReadOnly = true;
+            this.RichTextBoxConsole.Size = new System.Drawing.Size(445, 278);
+            this.RichTextBoxConsole.TabIndex = 5;
+            this.RichTextBoxConsole.Text = "";
             // 
-            // textBox1
+            // ChooseDate
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox1.Location = new System.Drawing.Point(-3, 109);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 276);
-            this.textBox1.TabIndex = 4;
+            this.ChooseDate.CalendarFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ChooseDate.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ChooseDate.Location = new System.Drawing.Point(26, 12);
+            this.ChooseDate.Name = "ChooseDate";
+            this.ChooseDate.Size = new System.Drawing.Size(200, 33);
+            this.ChooseDate.TabIndex = 6;
             // 
             // TemporaryPasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 385);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(447, 325);
+            this.Controls.Add(this.ChooseDate);
+            this.Controls.Add(this.RichTextBoxConsole);
+            this.Controls.Add(this.Get_Button);
             this.Name = "TemporaryPasswordForm";
-            this.Text = "Get Temporary Password";
+            this.Text = "Temporary Password";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button Get_Button;
+        private System.Windows.Forms.RichTextBox RichTextBoxConsole;
+        private System.Windows.Forms.DateTimePicker ChooseDate;
     }
 }
 
