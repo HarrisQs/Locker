@@ -25,7 +25,7 @@ namespace TemporaryPassword
 
         private void Get_Button_Click(object sender, EventArgs e)//取得所選擇日期的臨時密碼
         {
-            RichTextBoxConsole.AppendText(Convert.ToString(ChooseDate.Value.Date)
+            RichTextBoxConsole.AppendText(ChooseDate.Text
                 + " : " + GetTemporaryPassword() + "\n");
         }
 
