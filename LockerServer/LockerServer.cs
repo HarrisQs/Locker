@@ -112,20 +112,21 @@ namespace LockerServer
     /// </summary>
     public class MyHub : Hub
     {
-        public void Pass()
+        public void Pass(String GroupName, String ComputerName)
         {
+            Clients.All.Pass(GroupName, ComputerName);
         }
-        public void Restart()
+        public void Restart(String GroupName, String ComputerName)
         {
-        
+            Clients.All.Restart(GroupName, ComputerName);
         }
-        public void Shutdown()
+        public void Shutdown(String GroupName, String ComputerName)
         {
-        
+            Clients.All.Shutdown(GroupName, ComputerName);
         }
-        public void CMDCommand()
+        public void CMDCommand(String CMD, String GroupName, String ComputerName)
         {
-
+            Clients.All.CMDCommand(CMD, GroupName, ComputerName);
         }
         public override Task OnConnected()
         {

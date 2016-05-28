@@ -97,7 +97,6 @@ namespace LockerClient
             string ResponseText;
             HttpClient client = new HttpClient();
             Connection = new HubConnection(ServerURI);
-            HubProxy = Connection.CreateHubProxy("MyHub");
             try
             {
                 await Connection.Start();//開始與Server連線
@@ -410,6 +409,21 @@ namespace LockerClient
         {
             //每五分鍾確認一次是否有斷線
             ConnectServerandGetInfo();
+        }
+
+        private void AccessCommand()
+        {
+            HubProxy = Connection.CreateHubProxy("MyHub");
+            HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
+                this.Invoke((Action)(() =>
+                    Action("Pass", GroupName, ComputerName)
+                 ))
+            );
+        
+        }
+        private void Action(String Action, String GroupName, String ComputerName)
+        { 
+            
         }
     }
 }

@@ -109,7 +109,7 @@ namespace LockerAnnouncer
             else if (CMDtextBox.Text != "" && GroupNameComboBox.Text != "")
             {
                 Status.Text = "指令已送出";
-                HubProxy.Invoke("CMDCommand", CMDtextBox.Text);
+                HubProxy.Invoke("CMDCommand", CMDtextBox.Text, GroupNameComboBox.Text, ComputerNameComboBox.Text);
             }
             else
             {
