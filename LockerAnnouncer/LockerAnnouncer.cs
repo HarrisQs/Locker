@@ -80,7 +80,7 @@ namespace LockerAnnouncer
             ConnectServer();
         }
 
-        private void LockerAnnouncer_FormClosing(object sender, FormClosingEventArgs e)
+        private void LockerAnnouncer_FormClosing(object sender, FormClosingEventArgs e)//視窗關閉斷線
         {
             //視窗關閉後，斷線
             Connection.Stop();
@@ -106,10 +106,10 @@ namespace LockerAnnouncer
                 HubProxy.Invoke(ActionComboBox.Text, GroupNameComboBox.Text, ComputerNameComboBox.Text);
                 
             }
-            else if (CMDtextBox.Text != "")
+            else if (CMDtextBox.Text != "" && GroupNameComboBox.Text != "")
             {
                 Status.Text = "指令已送出";
-                HubProxy.Invoke("CMD Command", CMDtextBox.Text);
+                HubProxy.Invoke("CMDCommand", CMDtextBox.Text);
             }
             else
             {
@@ -133,10 +133,6 @@ namespace LockerAnnouncer
         {
             if (CMDtextBox.Text != "")
             {
-                ComputerNameComboBox.Enabled = false;
-                ComputerNameComboBox.Text = "";
-                GroupNameComboBox.Enabled = false;
-                GroupNameComboBox.Text = "";
                 ActionComboBox.Enabled = false;
                 ActionComboBox.Text = "";
             }

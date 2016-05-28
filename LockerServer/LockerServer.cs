@@ -123,6 +123,10 @@ namespace LockerServer
         {
         
         }
+        public void CMDCommand()
+        {
+
+        }
         public override Task OnConnected()
         {
             Program.MainForm.WriteToConsole("Client connected: " + Context.ConnectionId);
