@@ -1,6 +1,6 @@
 ﻿namespace LockerAnnouncer
 {
-    partial class Form1
+    partial class LockerAnnouncer
     {
         /// <summary>
         /// 設計工具所需的變數。
