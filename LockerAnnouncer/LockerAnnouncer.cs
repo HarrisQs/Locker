@@ -42,24 +42,39 @@ namespace LockerAnnouncer
                 DisconnectUI();
             }
         }
+
         private void ConnectUI()//處理網路沒連上時UI的動作
         {
             Status.Text = "Connected";
             Reconnect.Enabled = false;//連上線後不用在繼續重新連了
             IsConnect.Enabled = true;//判斷有無斷線
+            ComputerNameComboBox.Text = "";
+            GroupNameComboBox.Text = "";
+            ActionComboBox.Text = "";
+            CMDtextBox.Text = "";
+            ComputerNameComboBox.Enabled = true;
+            GroupNameComboBox.Enabled = true;
+            ActionComboBox.Enabled = true;
+            CMDtextBox.Enabled = true;
         }
+
         private void DisconnectUI()//處理網路沒連上時UI的動作
         {
             Status.Text = "Disconnected";
             Reconnect.Enabled = true;//每五秒重新連線
             IsConnect.Enabled = false;//停止判斷有無斷線
+            ComputerNameComboBox.Enabled = false;
+            GroupNameComboBox.Enabled = false;
+            ActionComboBox.Enabled = false;
+            CMDtextBox.Enabled = false;
         }
+
         private void Reconnect_Tick(object sender, EventArgs e)//每五秒重新連線的倒數
         {
             ConnectServer();
         }
 
-        private void IsConnect_Tick(object sender, EventArgs e)
+        private void IsConnect_Tick(object sender, EventArgs e)//每五鐘判斷有無斷線
         {
             //每五分鍾確認一次是否有斷線
             ConnectServer();
@@ -70,6 +85,79 @@ namespace LockerAnnouncer
             //視窗關閉後，斷線
             Connection.Stop();
             Connection.Dispose();
+        }
+
+        private void GroupNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (GroupNameComboBox.Text == "圖書館")
+            {
+                ComputerNameComboBox.Enabled = false;
+                ComputerNameComboBox.Text = "";
+            }
+            else
+                ComputerNameComboBox.Enabled = true;
+        }
+
+        private void EnterButton_Click(object sender, EventArgs e)
+        {
+            if (!IsEmpty())
+            {
+                Status.Text = "指令已送出";
+                HubProxy.Invoke(ActionComboBox.Text, GroupNameComboBox.Text, ComputerNameComboBox.Text);
+                
+            }
+            else if (CMDtextBox.Text != "")
+            {
+                Status.Text = "指令已送出";
+                HubProxy.Invoke("CMD Command", CMDtextBox.Text);
+            }
+            else
+            {
+                Status.Text = "請填入資料，再進行送出";
+            }
+        }
+
+        private bool IsEmpty()
+        {
+            if (ActionComboBox.Text == "" || GroupNameComboBox.Text == "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void CMDtextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (CMDtextBox.Text != "")
+            {
+                ComputerNameComboBox.Enabled = false;
+                ComputerNameComboBox.Text = "";
+                GroupNameComboBox.Enabled = false;
+                GroupNameComboBox.Text = "";
+                ActionComboBox.Enabled = false;
+                ActionComboBox.Text = "";
+            }
+            else
+            {
+                ComputerNameComboBox.Enabled = true;
+                GroupNameComboBox.Enabled = true;
+                ActionComboBox.Enabled = true;
+            }
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            ComputerNameComboBox.Text = "";
+            GroupNameComboBox.Text = "";
+            ActionComboBox.Text = "";
+            CMDtextBox.Text = "";
+            ComputerNameComboBox.Enabled = true;
+            GroupNameComboBox.Enabled = true;
+            ActionComboBox.Enabled = true;
+            CMDtextBox.Enabled = true;
         }
     }
 }

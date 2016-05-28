@@ -38,10 +38,11 @@
             this.actionLabel = new System.Windows.Forms.Label();
             this.ActionComboBox = new System.Windows.Forms.ComboBox();
             this.CMDlabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CMDtextBox = new System.Windows.Forms.TextBox();
+            this.EnterButton = new System.Windows.Forms.Button();
             this.Reconnect = new System.Windows.Forms.Timer(this.components);
             this.IsConnect = new System.Windows.Forms.Timer(this.components);
+            this.ResetButton = new System.Windows.Forms.Button();
             this.ConnectStatus.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +73,7 @@
             this.GroupNameComboBox.Name = "GroupNameComboBox";
             this.GroupNameComboBox.Size = new System.Drawing.Size(121, 20);
             this.GroupNameComboBox.TabIndex = 1;
+            this.GroupNameComboBox.SelectedIndexChanged += new System.EventHandler(this.GroupNameComboBox_SelectedIndexChanged);
             // 
             // GroupNameLabel
             // 
@@ -138,22 +140,24 @@
             this.CMDlabel.TabIndex = 7;
             this.CMDlabel.Text = "CMD Command";
             // 
-            // textBox1
+            // CMDtextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(138, 106);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 8;
+            this.CMDtextBox.Location = new System.Drawing.Point(138, 106);
+            this.CMDtextBox.Name = "CMDtextBox";
+            this.CMDtextBox.Size = new System.Drawing.Size(121, 22);
+            this.CMDtextBox.TabIndex = 8;
+            this.CMDtextBox.TextChanged += new System.EventHandler(this.CMDtextBox_TextChanged);
             // 
-            // button1
+            // EnterButton
             // 
-            this.button1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(279, 48);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 45);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Enter";
-            this.button1.UseVisualStyleBackColor = true;
+            this.EnterButton.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.EnterButton.Location = new System.Drawing.Point(281, 20);
+            this.EnterButton.Name = "EnterButton";
+            this.EnterButton.Size = new System.Drawing.Size(100, 45);
+            this.EnterButton.TabIndex = 9;
+            this.EnterButton.Text = "Enter";
+            this.EnterButton.UseVisualStyleBackColor = true;
+            this.EnterButton.Click += new System.EventHandler(this.EnterButton_Click);
             // 
             // Reconnect
             // 
@@ -165,13 +169,25 @@
             this.IsConnect.Interval = 300000;
             this.IsConnect.Tick += new System.EventHandler(this.IsConnect_Tick);
             // 
+            // ResetButton
+            // 
+            this.ResetButton.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ResetButton.Location = new System.Drawing.Point(281, 78);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(100, 45);
+            this.ResetButton.TabIndex = 10;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // LockerAnnouncer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 161);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ResetButton);
+            this.Controls.Add(this.EnterButton);
+            this.Controls.Add(this.CMDtextBox);
             this.Controls.Add(this.CMDlabel);
             this.Controls.Add(this.ActionComboBox);
             this.Controls.Add(this.actionLabel);
@@ -201,10 +217,11 @@
         private System.Windows.Forms.Label actionLabel;
         private System.Windows.Forms.ComboBox ActionComboBox;
         private System.Windows.Forms.Label CMDlabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox CMDtextBox;
+        private System.Windows.Forms.Button EnterButton;
         private System.Windows.Forms.Timer Reconnect;
         private System.Windows.Forms.Timer IsConnect;
+        private System.Windows.Forms.Button ResetButton;
     }
 }
 
