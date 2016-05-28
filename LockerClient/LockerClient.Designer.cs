@@ -43,7 +43,7 @@
             this.Login_button = new System.Windows.Forms.Button();
             this.Detail_label = new System.Windows.Forms.Label();
             this.Reconnect = new System.Windows.Forms.Timer(this.components);
-            this.VerificationConnect = new System.Windows.Forms.Timer(this.components);
+            this.IsConnect = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Login_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectFailed_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Loading_pictureBox)).BeginInit();
@@ -208,10 +208,10 @@
             this.Reconnect.Interval = 5000;
             this.Reconnect.Tick += new System.EventHandler(this.ReconnectCountdown_Tick);
             // 
-            // VerificationConnect
+            // IsConnect
             // 
-            this.VerificationConnect.Interval = 300000;
-            this.VerificationConnect.Tick += new System.EventHandler(this.VerificationConnect_Tick);
+            this.IsConnect.Interval = 300000;
+            this.IsConnect.Tick += new System.EventHandler(this.IsConnect_Tick);
             // 
             // LockerClient
             // 
@@ -259,7 +259,7 @@
         private System.Windows.Forms.Button Login_button;
         private System.Windows.Forms.Label Detail_label;
         private System.Windows.Forms.Timer Reconnect;
-        private System.Windows.Forms.Timer VerificationConnect;
+        private System.Windows.Forms.Timer IsConnect;
 
 
 

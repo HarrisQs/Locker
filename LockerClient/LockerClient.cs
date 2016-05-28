@@ -101,6 +101,7 @@ namespace LockerClient
             try
             {
                 await Connection.Start();//開始與Server連線
+                _TockenID = Connection.ConnectionId;
                 HttpResponseMessage response = await client.GetAsync("http://vls.yzu.edu.tw/cmd-utf8.asp");
                 response.EnsureSuccessStatusCode();
                 ResponseText = await response.Content.ReadAsStringAsync();
@@ -114,6 +115,7 @@ namespace LockerClient
                 Detail_label.Text = _HostName + "\n\r"
                                     + _IP + "\n\r"
                                     + _Group + "\n\r"
+                                    + _TockenID + "\n\r"
                                     + _Memo ;
                 if (CheckForInternetConnection())
                     Detail_label.Text += "Connecting";
@@ -305,14 +307,13 @@ namespace LockerClient
             this.BackColor = System.Drawing.Color.Orange;
             //每五秒重新連線
             Reconnect.Enabled = true;
-            VerificationConnect.Enabled = false;
+            IsConnect.Enabled = false;
         }
 
         private void ConnectUI()//處理網路沒連上時UI的動作
         {
             Reconnect.Enabled = false;//連上線後不用在繼續重新連了
-            VerificationConnect.Enabled = true;//判斷有無斷線
-            Detail_label.Text = "";
+            IsConnect.Enabled = true;//判斷有無斷線
             ConnectFailed_pictureBox.Visible = false;
             TemporaryPassword_textBox.Visible = false;
             EnterTempPassword_button.Visible = false;
@@ -405,8 +406,9 @@ namespace LockerClient
             Connection.Dispose();
         }
 
-        private void VerificationConnect_Tick(object sender, EventArgs e)
+        private void IsConnect_Tick(object sender, EventArgs e)
         {
+            //每五分鍾確認一次是否有斷線
             ConnectServerandGetInfo();
         }
     }
