@@ -35,13 +35,25 @@ namespace LockerAnnouncer
             try
             {
                 await Connection.Start();
-                Status.Text = "Connected";
+                ConnectUI();
             }
             catch (HttpRequestException)
-            {     
+            {
+                DisconnectUI();
             }
         }
-
+        private void ConnectUI()//處理網路沒連上時UI的動作
+        {
+            Status.Text = "Connected";
+            Reconnect.Enabled = false;//連上線後不用在繼續重新連了
+            IsConnect.Enabled = true;//判斷有無斷線
+        }
+        private void DisconnectUI()//處理網路沒連上時UI的動作
+        {
+            Status.Text = "Disconnected";
+            Reconnect.Enabled = true;//每五秒重新連線
+            IsConnect.Enabled = false;//停止判斷有無斷線
+        }
         private void Reconnect_Tick(object sender, EventArgs e)//每五秒重新連線的倒數
         {
             ConnectServer();
@@ -50,7 +62,14 @@ namespace LockerAnnouncer
         private void IsConnect_Tick(object sender, EventArgs e)
         {
             //每五分鍾確認一次是否有斷線
-            ConnectServerandGetInfo();
+            ConnectServer();
+        }
+
+        private void LockerAnnouncer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //視窗關閉後，斷線
+            Connection.Stop();
+            Connection.Dispose();
         }
     }
 }

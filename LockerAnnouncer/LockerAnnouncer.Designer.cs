@@ -182,6 +182,7 @@
             this.Controls.Add(this.ConnectStatus);
             this.Name = "LockerAnnouncer";
             this.Text = "Locker Announcer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LockerAnnouncer_FormClosing);
             this.ConnectStatus.ResumeLayout(false);
             this.ConnectStatus.PerformLayout();
             this.ResumeLayout(false);
