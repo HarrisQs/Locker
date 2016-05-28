@@ -112,9 +112,16 @@ namespace LockerServer
     /// </summary>
     public class MyHub : Hub
     {
-        public void Send(string name, string message)
+        public void Pass()
         {
-            Clients.All.addMessage(name, message);
+        }
+        public void Restart()
+        {
+        
+        }
+        public void Shutdown()
+        {
+        
         }
         public override Task OnConnected()
         {

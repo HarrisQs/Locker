@@ -87,7 +87,7 @@ namespace LockerAnnouncer
             Connection.Dispose();
         }
 
-        private void GroupNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void GroupNameComboBox_SelectedIndexChanged(object sender, EventArgs e)//圖書館和電腦教室不同情況
         {
             if (GroupNameComboBox.Text == "圖書館")
             {
@@ -98,7 +98,7 @@ namespace LockerAnnouncer
                 ComputerNameComboBox.Enabled = true;
         }
 
-        private void EnterButton_Click(object sender, EventArgs e)
+        private void EnterButton_Click(object sender, EventArgs e)//送指令到SERVER
         {
             if (!IsEmpty())
             {
@@ -117,7 +117,7 @@ namespace LockerAnnouncer
             }
         }
 
-        private bool IsEmpty()
+        private bool IsEmpty()//判斷欄位是否空著
         {
             if (ActionComboBox.Text == "" || GroupNameComboBox.Text == "")
             {
@@ -129,7 +129,7 @@ namespace LockerAnnouncer
             }
         }
 
-        private void CMDtextBox_TextChanged(object sender, EventArgs e)
+        private void CMDtextBox_TextChanged(object sender, EventArgs e)//當輸入CMD時做出動作
         {
             if (CMDtextBox.Text != "")
             {
@@ -148,7 +148,7 @@ namespace LockerAnnouncer
             }
         }
 
-        private void ResetButton_Click(object sender, EventArgs e)
+        private void ResetButton_Click(object sender, EventArgs e)//重設按鈕
         {
             ComputerNameComboBox.Text = "";
             GroupNameComboBox.Text = "";
@@ -158,6 +158,7 @@ namespace LockerAnnouncer
             GroupNameComboBox.Enabled = true;
             ActionComboBox.Enabled = true;
             CMDtextBox.Enabled = true;
+            Status.Text = "";
         }
     }
 }
