@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿/**
+ * 撰寫時間:2016/05/26
+ * 作者:張弘瑜
+ * 目標:做一個SignalR的登入伺服器端(含基本功能、傳送指令等功能)
+ **/ 
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
 using Owin;

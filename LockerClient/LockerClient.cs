@@ -1,7 +1,7 @@
 ﻿/**
- * 撰寫時間:2015/02/07
+ * 撰寫時間:2016/05/27
  * 作者:張弘瑜
- * 目標:做一個SignalR的登入客戶端
+ * 目標:做一個SignalR的登入客戶端(包含:斷線、重新連線、臨時密碼等情況)
  **/ 
 using System;
 using System.Collections.Generic;
