@@ -25,19 +25,32 @@ namespace LockerAnnouncer
         public LockerAnnouncer()//初始化視窗
         {
             InitializeComponent();
+            ConnectServer();
         }
 
-        private async void ConnectAsync()//與伺服器連線
+        private async void ConnectServer()//與伺服器連線
         {
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
             try
             {
                 await Connection.Start();
+                Status.Text = "Connected";
             }
             catch (HttpRequestException)
             {     
             }
+        }
+
+        private void Reconnect_Tick(object sender, EventArgs e)//每五秒重新連線的倒數
+        {
+            ConnectServer();
+        }
+
+        private void IsConnect_Tick(object sender, EventArgs e)
+        {
+            //每五分鍾確認一次是否有斷線
+            ConnectServerandGetInfo();
         }
     }
 }

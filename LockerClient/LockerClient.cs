@@ -394,7 +394,7 @@ namespace LockerClient
             }
         }
 
-        private void ReconnectCountdown_Tick(object sender, EventArgs e)
+        private void ReconnectCountdown_Tick(object sender, EventArgs e)ConnectServer()
         {
             ConnectServerandGetInfo();
         }
