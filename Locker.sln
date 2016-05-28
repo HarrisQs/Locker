@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerClient", "LockerClien
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerServer", "LockerServer\LockerServer.csproj", "{2368DFE4-48D1-482D-9445-B5F95FEF5424}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockerTemporaryPassword", "TemporaryPassword\LockerTemporaryPassword.csproj", "{1F03D462-4056-44DF-96A8-C50D75F62E63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2368DFE4-48D1-482D-9445-B5F95FEF5424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2368DFE4-48D1-482D-9445-B5F95FEF5424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2368DFE4-48D1-482D-9445-B5F95FEF5424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F03D462-4056-44DF-96A8-C50D75F62E63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F03D462-4056-44DF-96A8-C50D75F62E63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F03D462-4056-44DF-96A8-C50D75F62E63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F03D462-4056-44DF-96A8-C50D75F62E63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
