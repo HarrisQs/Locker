@@ -83,8 +83,11 @@ namespace LockerAnnouncer
         private void LockerAnnouncer_FormClosing(object sender, FormClosingEventArgs e)//視窗關閉斷線
         {
             //視窗關閉後，斷線
-            Connection.Stop();
-            Connection.Dispose();
+            if (Connection != null)
+            {
+                Connection.Stop();
+                Connection.Dispose();
+            }
         }
 
         private void GroupNameComboBox_SelectedIndexChanged(object sender, EventArgs e)//圖書館和電腦教室不同情況

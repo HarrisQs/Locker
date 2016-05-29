@@ -96,6 +96,10 @@ namespace LockerClient
             HttpClient client = new HttpClient();
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
+            HubProxy.On<bool>("CheckLogin", (CheckAnswer) =>
+            this.Invoke((Action)(() =>
+                    AdditionalCheckFunction(CheckAnswer)))
+            );
             try
             {
                 await Connection.Start();//開始與Server連線
@@ -306,6 +310,11 @@ namespace LockerClient
             //每五秒重新連線
             Reconnect.Enabled = true;
             IsConnect.Enabled = false;
+            if (Connection != null)
+            {
+                Connection.Stop();
+                Connection.Dispose();
+            }
         }
 
         private void ConnectUI()//處理網路沒連上時UI的動作
@@ -400,8 +409,11 @@ namespace LockerClient
         private void LockerClient_FormClosing(object sender, FormClosingEventArgs e)
         {
             //視窗關閉後，斷線
-            Connection.Stop();
-            Connection.Dispose();
+            if (Connection != null)
+            {
+                Connection.Stop();
+                Connection.Dispose();
+            }
         }
 
         private void IsConnect_Tick(object sender, EventArgs e)
@@ -414,14 +426,19 @@ namespace LockerClient
         {
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
-            HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
-                this.Invoke((Action)(() =>
-                    ClientReceiving()
-                 ))
+            //HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
+            //    this.Invoke((Action)(() =>
+            //        ClientReceiving()
+            //     ))
+            //);
+            HubProxy.On<bool>("CheckLogin", (CheckAnswer) =>
+            this.Invoke((Action)(() =>
+                    AdditionalCheckFunction(CheckAnswer)))
             );
         
         }
-        private void ClientReceiving()
+        
+        private void AdditionalCheckFunction(bool iii)
         {
             WarningMessage_label.Text = "DDDDDD";
         }
