@@ -94,13 +94,7 @@ namespace LockerClient
         {
             string ResponseText;
             HttpClient client = new HttpClient();
-            Connection = new HubConnection(ServerURI);
-            HubProxy = Connection.CreateHubProxy("MyHub");
-            HubProxy.On<string, string>("AddMessage", (name, message) =>
-    this.Invoke((Action)(() =>
-        AdditionalCheckFunction(true)
-    ))
-);
+            AccessCommand();//一些連線的初始化，和指令的接收
             try
             {
                 await Connection.Start();//開始與Server連線
@@ -423,36 +417,29 @@ namespace LockerClient
             ConnectServerandGetInfo();
         }
 
-        private void AccessCommand()
+        private void AccessCommand()//一些連線的初始化，和指令的接收
         {
+            //指令要在他連線的時候就跑過，以後才會執行
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
-            //HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
-            //    this.Invoke((Action)(() =>
-            //        ClientReceiving()
-            //     ))
-            //);
-            HubProxy.On<bool>("CheckLogin", (CheckAnswer) =>
-            this.Invoke((Action)(() =>
-                    AdditionalCheckFunction(CheckAnswer)))
+            HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
+                this.Invoke((Action)(() =>
+                    ClientReceiving("Pass", GroupName, ComputerName)
+                 ))
             );
         
         }
         
-        private void AdditionalCheckFunction(bool iii)
+        private void ClientReceiving(String action, String GroupName, String ComputerName)
         {
-            this.Close();
+            switch (action)
+            {
+                case "Pass":
+                    WarningMessage_label.Enabled = true;
+                    WarningMessage_label.Text = GroupName + ComputerName;
+                    break;
+            }
+
         }
-        //private void ClientReceiving(String action, String GroupName, String ComputerName)
-        //{
-        //    switch (action)
-        //    { 
-        //        case "Pass":
-        //            WarningMessage_label.Enabled = true;
-        //            WarningMessage_label.Text = GroupName + ComputerName;
-        //            break;
-        //    }
-            
-        //}
     }
 }

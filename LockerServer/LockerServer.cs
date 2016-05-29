@@ -115,8 +115,7 @@ namespace LockerServer
         public void Pass(String GroupName, String ComputerName)
         {
             Program.MainForm.WriteToConsole("GroupName " + GroupName + " ComputerName " + ComputerName);
-            Clients.All.addMessage(GroupName, ComputerName);
-            //Clients.All.Pass(GroupName, ComputerName);
+            Clients.All.Pass(GroupName, ComputerName);
         }
         public void Restart(String GroupName, String ComputerName)
         {
