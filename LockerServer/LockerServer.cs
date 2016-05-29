@@ -137,10 +137,10 @@ namespace LockerServer
             Program.MainForm.WriteToConsole("Client connected: " + Context.ConnectionId);
             return base.OnConnected();
         }
-        public override Task OnDisconnected()
+        public override Task OnDisconnected(bool Stop)
         {
             Program.MainForm.WriteToConsole("Client disconnected: " + Context.ConnectionId);
-            return base.OnDisconnected();
+            return base.OnDisconnected(true);
         }
     }
 }

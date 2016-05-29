@@ -139,29 +139,6 @@ namespace LockerClient
             s = s.Replace("=", "%3D");
             Password_textBox.Text = s;
 
-            //if (Password_textBox.Text == "%3F")//如果密碼輸入問號 出現一些關於這台電腦的資訊
-            //{
-
-            //    DateTime fileCreatedDate = File.GetCreationTime(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
-            //    //DateTime fileCreatedDate = File.GetCreationTime(@"LoginForm.exe");
-            //    //String strHostName2 = Dns.GetHostName();//
-            //    // 取得本機的 IpHostEntry 類別實體
-            //    //IPHostEntry iphostentry = Dns.GetHostEntry(strHostName2);
-
-            //    label1.Text = "";
-            //    label1.Text = _strHostName;
-            //    label1.Text += "\n\r" + DateTime.Now;
-            //    label1.Text += "\n\r" + tmpURI;//
-            //    label1.Text += "\n\r" + fileCreatedDate.ToString();
-            //    label1.Text += "\n\r" + _strTmpTKID;//
-
-            //    if (CheckForInternetConnection())
-            //    {
-            //        label1.Text += "\n\r" + "Google ok";
-            //    }
-
-            //}
-
             if (Account_textBox.Text == "" || (!Regex.IsMatch(Account_textBox.Text, @"^[_@.a-zA-Z0-9]*$")))//判斷是否有輸入帳號和是否有特殊自元
             {
                 WarningMessage_label.Text = "Please enter your account.";
@@ -240,9 +217,7 @@ namespace LockerClient
                 //判斷是否驗證成功
                 if (json["authentic"].ToString() == "1")
                 {
-                    //e.Cancel = true;
-                    //this.Hide();
-                    this.Close();
+                    this.Hide();
                 }
                 else 
                 {
@@ -360,7 +335,7 @@ namespace LockerClient
         {
             if (ValidateTemporaryPassword(ClearString(TemporaryPassword_textBox.Text))
                 && TemporaryPassword_textBox.Text != "")
-                this.Close();
+                this.Hide();
             else
             {
                 WarningMessage_label.Visible = true;
