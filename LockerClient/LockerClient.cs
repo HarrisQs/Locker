@@ -20,6 +20,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace LockerClient
 {
@@ -450,10 +451,19 @@ namespace LockerClient
             switch (action)
             {
                 case "Pass":
-                    Account_label.Text = "Pass" + GroupName + ComputerName;
+                    if (GroupName == _Group && _HostName.IndexOf(ComputerName) >= 0)
+                    {
+                        Account_label.Text = "Pass";
+                    }
                     break;
                 case "Restart":
                     Account_label.Text = "Restart" + GroupName + ComputerName;
+                    Process p = new Process();
+                    p.StartInfo.FileName = "cmd.exe";
+                    p.StartInfo.UseShellExecute = false;
+                    p.StartInfo.RedirectStandardInput = true;
+                    p.Start();
+                    p.StandardInput.WriteLine("ipconfig");
                     break;
                 case "Shutdown":
                     Account_label.Text = "Shutdown" + GroupName + ComputerName;

@@ -1,5 +1,5 @@
 ﻿/**
- * 撰寫時間:2016/05/28
+ * 撰寫時間:2016/05/29
  * 作者:張弘瑜
  * 目標:做一個SignalR的發號司令客戶端(包含:自動通過、關機等情況)
  **/ 
@@ -149,15 +149,18 @@ namespace LockerAnnouncer
 
         private void ResetButton_Click(object sender, EventArgs e)//重設按鈕
         {
-            ComputerNameComboBox.Text = "";
-            GroupNameComboBox.Text = "";
-            ActionComboBox.Text = "";
-            CMDtextBox.Text = "";
-            ComputerNameComboBox.Enabled = true;
-            GroupNameComboBox.Enabled = true;
-            ActionComboBox.Enabled = true;
-            CMDtextBox.Enabled = true;
-            Status.Text = "";
+            if (Connection != null)
+            {
+                ComputerNameComboBox.Text = "";
+                GroupNameComboBox.Text = "";
+                ActionComboBox.Text = "";
+                CMDtextBox.Text = "";
+                ComputerNameComboBox.Enabled = true;
+                GroupNameComboBox.Enabled = true;
+                ActionComboBox.Enabled = true;
+                CMDtextBox.Enabled = true;
+                Status.Text = "";
+            }
         }
     }
 }
