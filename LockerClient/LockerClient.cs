@@ -457,19 +457,22 @@ namespace LockerClient
                     }
                     break;
                 case "Restart":
-                    Account_label.Text = "Restart" + GroupName + ComputerName;
-                    Process p = new Process();
-                    p.StartInfo.FileName = "cmd.exe";
-                    p.StartInfo.UseShellExecute = false;
-                    p.StartInfo.RedirectStandardInput = true;
-                    p.Start();
-                    p.StandardInput.WriteLine("ipconfig");
+                    if (GroupName == _Group && _HostName.IndexOf(ComputerName) >= 0)
+                    {
+                        Process.Start("cmd.exe", @"/c shutdown -r -t 0");
+                    }
                     break;
                 case "Shutdown":
-                    Account_label.Text = "Shutdown" + GroupName + ComputerName;
+                    if (GroupName == _Group && _HostName.IndexOf(ComputerName) >= 0)
+                    {
+                        Process.Start("cmd.exe", @"/c shutdown -s -t 0");
+                    }
                     break;
                 case "CMDCommand":
-                    Account_label.Text = "CMDCommand " + CMD + GroupName + ComputerName;
+                    if (GroupName == _Group && _HostName.IndexOf(ComputerName) >= 0)
+                    {
+                        Process.Start("cmd.exe", @CMD);
+                    }
                     break;
             }
 

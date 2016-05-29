@@ -149,7 +149,7 @@ namespace LockerAnnouncer
 
         private void ResetButton_Click(object sender, EventArgs e)//重設按鈕
         {
-            if (Connection != null)
+            if (Status.Text != "Disconnected")
             {
                 ComputerNameComboBox.Text = "";
                 GroupNameComboBox.Text = "";
