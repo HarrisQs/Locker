@@ -35,7 +35,7 @@ namespace LockerAnnouncer
             try
             {
                 await Connection.Start();
-                ConnectUI();
+                ConnectUI(Connection.ConnectionId);
             }
             catch (HttpRequestException)
             {
@@ -43,9 +43,9 @@ namespace LockerAnnouncer
             }
         }
 
-        private void ConnectUI()//處理網路沒連上時UI的動作
+        private void ConnectUI(String TockenID)//處理網路沒連上時UI的動作
         {
-            Status.Text = "Connected";
+            Status.Text = "Connected ID : " + TockenID;
             Reconnect.Enabled = false;//連上線後不用在繼續重新連了
             IsConnect.Enabled = true;//判斷有無斷線
             ComputerNameComboBox.Text = "";

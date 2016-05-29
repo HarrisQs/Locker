@@ -87,9 +87,7 @@ namespace LockerClient
             WarningMessage_label.Location = new Point(_ScreenCenterX - 90, _ScreenCenterY + 95);
             // show services term
             Term_Checkbox.Location = new Point(_ScreenCenterX - 150, _ScreenCenterY + 200);
-            ConnectServerandGetInfo();//取得電腦資訊
-            //ConnectServer();//開始連線
-
+            ConnectServerandGetInfo();//取得電腦資訊 開始連線
         }
 
         private async void ConnectServerandGetInfo()//這裡使用同步 所以裡面的東西要先有才會繼續
@@ -97,6 +95,7 @@ namespace LockerClient
             string ResponseText;
             HttpClient client = new HttpClient();
             Connection = new HubConnection(ServerURI);
+            HubProxy = Connection.CreateHubProxy("MyHub");
             try
             {
                 await Connection.Start();//開始與Server連線
@@ -413,17 +412,29 @@ namespace LockerClient
 
         private void AccessCommand()
         {
+            Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
             HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
                 this.Invoke((Action)(() =>
-                    Action("Pass", GroupName, ComputerName)
+                    ClientReceiving()
                  ))
             );
         
         }
-        private void Action(String Action, String GroupName, String ComputerName)
-        { 
-            
+        private void ClientReceiving()
+        {
+            WarningMessage_label.Text = "DDDDDD";
         }
+        //private void ClientReceiving(String action, String GroupName, String ComputerName)
+        //{
+        //    switch (action)
+        //    { 
+        //        case "Pass":
+        //            WarningMessage_label.Enabled = true;
+        //            WarningMessage_label.Text = GroupName + ComputerName;
+        //            break;
+        //    }
+            
+        //}
     }
 }
