@@ -96,10 +96,11 @@ namespace LockerClient
             HttpClient client = new HttpClient();
             Connection = new HubConnection(ServerURI);
             HubProxy = Connection.CreateHubProxy("MyHub");
-            HubProxy.On<bool>("CheckLogin", (CheckAnswer) =>
-            this.Invoke((Action)(() =>
-                    AdditionalCheckFunction(CheckAnswer)))
-            );
+            HubProxy.On<string, string>("AddMessage", (name, message) =>
+    this.Invoke((Action)(() =>
+        AdditionalCheckFunction(true)
+    ))
+);
             try
             {
                 await Connection.Start();//開始與Server連線
@@ -440,7 +441,7 @@ namespace LockerClient
         
         private void AdditionalCheckFunction(bool iii)
         {
-            WarningMessage_label.Text = "DDDDDD";
+            this.Close();
         }
         //private void ClientReceiving(String action, String GroupName, String ComputerName)
         //{
