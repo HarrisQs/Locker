@@ -424,19 +424,42 @@ namespace LockerClient
             HubProxy = Connection.CreateHubProxy("MyHub");
             HubProxy.On<String, String>("Pass", (GroupName, ComputerName) =>
                 this.Invoke((Action)(() =>
-                    ClientReceiving("Pass", GroupName, ComputerName)
+                    ClientReceiving("Pass", "", GroupName, ComputerName)
+                 ))
+            );
+            HubProxy.On<String, String>("Restart", (GroupName, ComputerName) =>
+                this.Invoke((Action)(() =>
+                    ClientReceiving("Restart", "", GroupName, ComputerName)
+                 ))
+            );
+            HubProxy.On<String, String>("Shutdown", (GroupName, ComputerName) =>
+                this.Invoke((Action)(() =>
+                    ClientReceiving("Shutdown", "", GroupName, ComputerName)
+                 ))
+            );
+            HubProxy.On<String, String, String>("CMDCommand", (CMD, GroupName, ComputerName) =>
+                this.Invoke((Action)(() =>
+                    ClientReceiving("CMDCommand", CMD, GroupName, ComputerName)
                  ))
             );
         
         }
         
-        private void ClientReceiving(String action, String GroupName, String ComputerName)
+        private void ClientReceiving(String action, String CMD, String GroupName, String ComputerName)
         {
             switch (action)
             {
                 case "Pass":
-                    WarningMessage_label.Enabled = true;
-                    WarningMessage_label.Text = GroupName + ComputerName;
+                    Account_label.Text = "Pass" + GroupName + ComputerName;
+                    break;
+                case "Restart":
+                    Account_label.Text = "Restart" + GroupName + ComputerName;
+                    break;
+                case "Shutdown":
+                    Account_label.Text = "Shutdown" + GroupName + ComputerName;
+                    break;
+                case "CMDCommand":
+                    Account_label.Text = "CMDCommand " + CMD + GroupName + ComputerName;
                     break;
             }
 

@@ -114,19 +114,22 @@ namespace LockerServer
     {
         public void Pass(String GroupName, String ComputerName)
         {
-            Program.MainForm.WriteToConsole("GroupName " + GroupName + " ComputerName " + ComputerName);
+            Program.MainForm.WriteToConsole("Pass GroupName " + GroupName + " ComputerName " + ComputerName);
             Clients.All.Pass(GroupName, ComputerName);
         }
         public void Restart(String GroupName, String ComputerName)
         {
+            Program.MainForm.WriteToConsole("Restart GroupName " + GroupName + " ComputerName " + ComputerName);
             Clients.All.Restart(GroupName, ComputerName);
         }
         public void Shutdown(String GroupName, String ComputerName)
         {
+            Program.MainForm.WriteToConsole("Shutdown GroupName " + GroupName + " ComputerName " + ComputerName);
             Clients.All.Shutdown(GroupName, ComputerName);
         }
         public void CMDCommand(String CMD, String GroupName, String ComputerName)
         {
+            Program.MainForm.WriteToConsole("CMDCommand GroupName " + GroupName + " ComputerName " + ComputerName);
             Clients.All.CMDCommand(CMD, GroupName, ComputerName);
         }
         public override Task OnConnected()
