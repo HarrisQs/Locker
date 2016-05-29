@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LockerAnnouncer));
             this.ConnectStatus = new System.Windows.Forms.StatusStrip();
             this.Status = new System.Windows.Forms.ToolStripStatusLabel();
             this.GroupNameComboBox = new System.Windows.Forms.ComboBox();
@@ -196,6 +197,7 @@
             this.Controls.Add(this.GroupNameLabel);
             this.Controls.Add(this.GroupNameComboBox);
             this.Controls.Add(this.ConnectStatus);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LockerAnnouncer";
             this.Text = "Locker Announcer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LockerAnnouncer_FormClosing);

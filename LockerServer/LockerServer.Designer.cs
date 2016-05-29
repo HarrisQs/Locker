@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LockerServer));
             this.ButtonStart = new System.Windows.Forms.Button();
             this.ButtonStop = new System.Windows.Forms.Button();
             this.RichTextBoxConsole = new System.Windows.Forms.RichTextBox();
@@ -86,6 +87,7 @@
             this.Controls.Add(this.ButtonStop);
             this.Controls.Add(this.ButtonStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LockerServer";
             this.Text = "Locker Server";

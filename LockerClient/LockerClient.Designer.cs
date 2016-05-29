@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LockerClient));
             this.Login_pictureBox = new System.Windows.Forms.PictureBox();
             this.ConnectFailed_pictureBox = new System.Windows.Forms.PictureBox();
             this.Loading_pictureBox = new System.Windows.Forms.PictureBox();
@@ -231,6 +232,7 @@
             this.Controls.Add(this.Loading_pictureBox);
             this.Controls.Add(this.ConnectFailed_pictureBox);
             this.Controls.Add(this.Login_pictureBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LockerClient";
             this.Text = "Locker Clinet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LockerClient_FormClosing);

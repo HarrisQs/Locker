@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TemporaryPasswordForm));
             this.Get_Button = new System.Windows.Forms.Button();
             this.RichTextBoxConsole = new System.Windows.Forms.RichTextBox();
             this.ChooseDate = new System.Windows.Forms.DateTimePicker();
@@ -71,6 +72,7 @@
             this.Controls.Add(this.ChooseDate);
             this.Controls.Add(this.RichTextBoxConsole);
             this.Controls.Add(this.Get_Button);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TemporaryPasswordForm";
             this.Text = "Temporary Password";
             this.ResumeLayout(false);
