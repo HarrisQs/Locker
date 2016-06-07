@@ -7,7 +7,7 @@ Simple computer user management system
 
 ## Code Need
 
-This system need the following packages :
+This system needs the following packages :
 
 	1 Microsoft ASP.NET SignalR 2.2.0
 	2 Microsoft.Owin.Cors 3.0.1
@@ -16,11 +16,11 @@ This system need the following packages :
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+Because working at computer center, there have many computers, need to manage 
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+You can use git clone `git@github.com:HarrisQs/LitePrintMerge.git` to clone this project, then open it with visual studio 2013.
 
 ## API Reference
 
@@ -38,7 +38,7 @@ Provide code examples and explanations of how to get the project.
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+[HarrisQs @ GitHub ](https://github.com/HarrisQs)
 
 ## License
 
