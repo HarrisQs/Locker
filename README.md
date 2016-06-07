@@ -1,14 +1,18 @@
 # Locker
-簡易的電腦使用者管理系統
-
-# Project Name
+Simple computer user management system
 ## Synopsis
-
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+* This system use `SignalR` to reduce the burden of server whenr users log in.
+* It can use CMD command at server to control all computer.
+* It can also use server to control which can pass this system.
 
 ## Code Need
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+This system need the following packages :
+
+	1 Microsoft ASP.NET SignalR 2.2.0
+	2 Microsoft.Owin.Cors 3.0.1
+	3 Microsoft.Owin.Hosting 3.0.1
+	4 Microsoft.Owin.Host.HttpListener 3.0.1 
 
 ## Motivation
 
@@ -31,15 +35,6 @@ Provide code examples and explanations of how to get the project.
 * [Microsoft ASP.NET SignalR .NET Client 2.2.0](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)
 * [System.Net.Http](https://www.nuget.org/packages/System.Net.Http/4.0.1-rc2-24027)
 
-## Tests
-
-Describe and show how to run the tests with code examples.
-
-## History
-
-TODO: Write history
-
-##FAQ
 
 ## Contributors
 
