@@ -16,7 +16,10 @@ This system needs the following packages :
 
 ## Motivation
 
-Because working at computer center, there have many computers, need to manage 
+Because working at computer center, 
+we need to manage many computers that used by student or teacher, 
+and record when and who is using the computer
+So, I write a program to solve this problem.
 
 ## Installation
 
