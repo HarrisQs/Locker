@@ -45,4 +45,4 @@ You can use git clone `git@github.com:HarrisQs/LitePrintMerge.git` to clone this
 
 ## License
 
-Available under [the MIT license](https://mths.be/mit).
+Available under [the BSD-3-Clause license](https://opensource.org/licenses/BSD-3-Clause).
