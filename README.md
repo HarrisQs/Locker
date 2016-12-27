@@ -1,4 +1,5 @@
 # Locker
+[![License](https://poser.pugx.org/padraic/humbug_get_contents/license)](https://opensource.org/licenses/BSD-3-Clause)
 Simple computer user management system
 ## Synopsis
 * This system use `SignalR` to reduce the burden of server whenr users log in.
